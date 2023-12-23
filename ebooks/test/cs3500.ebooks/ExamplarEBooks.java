@@ -1,3 +1,5 @@
+package cs3500.ebooks;
+
 import java.util.List;
 
 import cs3500.ebooks.EBookChunk;

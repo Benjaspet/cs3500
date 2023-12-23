@@ -10,11 +10,10 @@ import java.util.Objects;
 public class Hyperlink implements EBookFlow {
 
   private final EBookFlow contentToShow;
-  private final String url;
 
   public Hyperlink(EBookFlow contentToShow, String url) {
     this.contentToShow = Objects.requireNonNull(contentToShow);
-    this.url = Objects.requireNonNull(url);
+    String url1 = Objects.requireNonNull(url);
   }
 
   /**

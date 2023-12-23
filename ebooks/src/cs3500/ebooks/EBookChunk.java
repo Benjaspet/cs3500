@@ -33,5 +33,4 @@ public interface EBookChunk {
    */
 
   String format(int lineWidth);
-
 }

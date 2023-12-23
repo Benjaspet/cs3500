@@ -1,3 +1,5 @@
+package cs3500.ebooks;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -253,6 +255,6 @@ public class EBookTests {
     Assert.assertThrows(IllegalArgumentException.class, () -> new EBook(null));
     Assert.assertThrows(NullPointerException.class, () -> new Hyperlink(null, "hello"));
     Assert.assertThrows(NullPointerException.class,
-            () -> new Paragraph(List.of(new TextFlow(null))));
+        () -> new Paragraph(List.of(new TextFlow(null))));
   }
 }
