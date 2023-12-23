@@ -1,0 +1,25 @@
+There are a few things that we would have done differently if we were to do this assignment again. Firstly, we would
+have made our player classes more efficient by instead having them take in a ReversiStrategy instead of an AIDifficulty enum.
+We found this enum to be redundant after the fact, and had we instead made the AI player class take in a strategy, it would
+remove the need for two switch statements in the AI player class and the PlayerFactory class to create a new player based on
+the provided difficulty. It would be a generally better design choice to do this overall. Additionally, we might have decided
+to use axial coordinates instead of our custom row, column coordinate system. Our initial cell creation uses axial coordinates,
+but the way we get cells on the board and the way we check for valid moves uses our custom coordinate system. We would have
+probably decided to use axial coordinates for the entire assignment if we were to do it again.
+
+Based on the code that was given to us, we probably would have made a custom Point class instead of using the built-in
+Point class. We liked how our providers created a Move class for this purpose; the design was eloquent. We also saw in
+our providers' code that they had an anyValidMoves() method that determines if the provided player has any valid moves left.
+This would have been useful in automatically determining if the game is over or not, or automatically passing for the player
+if they have no valid moves left. We could have implemented a feature like this in our implementation, instead of having a player
+check all of their cells to see if they have any valid moves left.
+
+Our experience with our providers was very beneficial. We reached out to our providers and they responded quickly.
+The first time they sent us their code, they were missing a value-class (AxialCoordinate.java). We noticed this and
+notified them, and they sent the value-class over quickly. We also noticed later on in the assignment that their code
+was too tightly coupled to their model (i.e. they were returning concrete implementation classes in their interface methods
+instead of general interfaces), and they fixed this quickly as well and sent us the updated code within a day. We were also
+pleased with the fact that they reached out to us again before the assignment concluded to see if we had any questions or
+needed clarifications on their JavaDoc or code. Overall, we were very pleased with our providers and their code and had a
+great overall experience. We learned a lot on different approaches to the assignment and how to adapt to said different
+interpretations on how to complete the assignment.

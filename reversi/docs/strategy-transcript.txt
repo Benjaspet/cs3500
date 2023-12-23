@@ -1,0 +1,7 @@
+Checked (1, 2) for X.
+Checked (2, 1) for X.
+Checked (2, 4) for X.
+Checked (4, 1) for X.
+Checked (4, 4) for X.
+Checked (5, 2) for X.
+[FlipMostCells AI] Found move for X at (1, 2).

@@ -1,0 +1,43 @@
+Design Critique
+We thought the overall design was eloquent. In the initial version of the providers' code, their interfaces were returning
+the concrete Hexagon class. We found this to be too tighltly coupled to the model, so we asked them to change the code to
+return the cell type interface. We also had made an adapter to convert our Cell interface to their Cell interface, to handle this.
+We found it very creative and intelligent to use an enum to represent the current turn, and a next() method inside said enum to
+proceed to the next turn. Using a map of cell coordinates to the type of cell was also a very smart way to represent the board. This
+made it very easy to get a hexagon at a specific coordinate; simply get the value of the axial coordinate key in the map. The design of
+their view was also eloquent as the panel was added to its center. In the panel, they separated their method of handling mouse clicks
+which made the design easier to read and understand. As of the view itself, we thought it would be better if the starting size of the
+window was cropped to the size of the board, rather than some obscure size at it is currently. In their panel class, we saw their use
+of null when handling the clicked cell to be a poor design choice. We thought it would be better to have a default value of some sort
+to handle the case where the user clicks outside the board, or if no cell is clicked.
+
+Implementation Critique
+Our providers' implementation was effective. We were able to use their provided view and strategy with no issues and successfully adapt
+our model to their view. Their strategy implementation was straightforward and effective. A couple of things we noticed about their view:
+when a cell is selected and highlighted and the user clicks off the board, the selected cell should instantly be
+unhighlighted. However, it takes two clicks total on the outside of the board to unhighlight it (only in some places)
+(we ran into this issue as well, but fixed it in our view). We also noticied that their view enables the user to click and select cells that
+are already occupied, which we don't think should be permitted. Also, the view lets the player select cells if their view uses an AI player
+which should not be possible, as the AI player should be the only one selecting cells. We also noticed that the view does not display the
+current player's turn, which we think would be a nice feature to add (maybe in the title of the window). Overall though, the implementation
+was effective and functional.
+
+Documentation Critique
+The documentation throughout the provided classes and interfaces was well written. Most of the methods had
+comments describing the purpose of the method, the significance of the parameters, and the return value.
+Furthermore, methods that threw exceptions also had documentation for each of the exceptions and in what cases
+they would be thrown (i.e. the game is over, move is invalid, not the player's turn, etc.). A small critique, but it
+would have been nice if some of the methods (like getRadius(), getGameWinner(), startGame(), etc.) had a little more documentation
+to describe where the method is used and why it is needed in the interface (for the view, or the strategies, etc.). Also,
+all the methods in the IPlayer interface did not have any sort of documentation. While we feel as if these methods were
+straightforward, documentation could have been a bit helpful. Overall though, the code was well documented, specifically
+in the model and view interfaces.
+
+Design/code Limitations and Suggestions on How To Address Them
+In their model, it might have been better to include a method that would get the cells that would be flipped if a player move to a specific location on the board.
+This would have made it much easier to implement the strategies, as there are two large methods that handle counting the cells that would
+be flipped and determining all moves that would capture the most pieces. If these method was implemented, simply getting the size of the list
+of cells to be flipped could handle that massive method in the strategy, and would generally make the code more readable.
+Overall, their code was not limited. Their use of an interface to handle strategies was not limited and allows for easy implementation of new strategies.
+Their use of model and view observers was also not limited, as it allows for easy implementation of new features listeners.
+The design wasgenerally good overall, but it could be refined in some places as mentioned above.
