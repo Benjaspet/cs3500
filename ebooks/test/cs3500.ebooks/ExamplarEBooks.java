@@ -85,7 +85,7 @@ public class ExamplarEBooks {
   }
 
   /**
-   * This chaff occurs when the provided code fails to throw exceptions when the paramater of the
+   * This chaff occurs when the provided code fails to throw exceptions when the parameter of the
    * contains() method in TextFlow is null or contains a space.
    */
 

@@ -1,181 +1,150 @@
-# Reversi
+# Hexagonal Reversi
 
-## Changes for Part IV
-- Created various adapters to implement our providers' strategy and view.
-- Updated the PlayerFactory to create our providers' players if desired.
-- Updated the ViewFactory to create our providers' views if desired.
+---
+Per course guidelines for CS-3500: Object-Oriented Design at Northeastern University,
+source code for this project must remain private. The source code will be made publicly
+available upon request to [petrillo.b@northeastern.edu](mailto:petrillo.b@northeastern.edu).
+---
 
-### New Classes for Part IV
+## Project Outline
+1. Description
+2. Technology Stack
+3. Installation and Running
+4. Program Usage
+5. Features & Design Patterns
+6. Screenshots
 
-- **cs3500.reversi.adapter.ModelAdapter** - Our adapter to the provider's model.
-- **cs3500.reversi.adapter.ViewAdapter** - Our adapter to the provider's view.
-- **cs3500.reversi.adapter.HexCellAdapter** - Our adapter to the provider's cell.
-- **cs3500.reversi.adapter.HumanPlayerAdapter** - Our adapter to the provider's human player.
-- **cs3500.reversi.adapter.AIPlayerAdapter** - Our adapter to the provider's AI player.
-- And obviously, all of our provider's classes and interfaces.
+### Description
 
-### Using Our Providers' View & Strategy
-Reference our PROVIDERVIEW.md. In our main file, we have created an example game with two
-players: a human player and the AI player. The human player is using our view. The AI player is
-using our providers' view and our providers' strategy.
+Hexagonal Reversi is a twist on the traditional Orthello game, featuring a hexagonal 
+grid instead of the classic square board. This variation introduces new strategic 
+complexities as players must now consider six directions of play, rather than four. 
+The game is played with two sets of colored discs, typically black and white, and 
+the objective remains to have the majority of your discs on the board by the end of 
+the game.
 
-## Changes for Part III
-- Moved the previously separate class for the key component (i.e. handling key inputs) to the view.
-- Created a mock player, mock controllers, and an additional mock model for testing purposes.
-- Created a view factory and a player factory to create views and AI players, respectively.
-- Added features interfaces for both the model and the view so the controller can listen to events
-coming from both the view and the model (i.e. turn changes, moves, etc.).
-- Updated our main file to handling command line arguments, which are outlined below.
-- Refactored resizablility of the view for our board.
+Players take turns placing their discs on the board, aiming to capture their 
+opponent's discs. A capture occurs when a player's disc brackets one or more of 
+the opponent's discs in a straight line, in any of the six possible directions. 
+The bracketed discs are then flipped to the capturing player's color. The game 
+continues until the board is filled or no valid moves remain for either player. 
+The player with the most discs of their color on the board at the end of the game 
+wins. The hexagonal layout adds a fresh layer of depth and strategy, requiring 
+players to think more expansively and adapt to the increased number of potential 
+moves and captures.
 
-### New Classes for Part III
-- **cs3500.reversi.controller.ReversiController** - This interface is used to represent a controller.
-- **cs3500.reversi.player.Player** - Represents a generic player.
-- **cs3500.reversi.player.AIPlayer** - Represents an AI player.
-- **cs3500.reversi.player.HumanPlayer** - Represents a human player.
-- **cs3500.reversi.factory.PlayerFactory** - Used to create players.
-- **cs3500.reversi.factory.ViewFactory** - Used to create views.
-- **cs3500.reversi.view.ViewFeatures** - Represents all the features that the view has and listens to.
-- All of our mock classes.
+### Technology Stack
 
-### Command Line Arguments
+- Language: Java
+- Frameworks: Swing (GUI), JUnit (Testing)
+- IDE: IntelliJ IDEA Ultimate
+- Version Control: Git
+- Documentation: Javadoc, Markdown
 
-Here is how you can create custom games with the command line:
-- **Usage: java -jar Reversi.jar <number-of-rows> <player1> <player2>**
-- **number-of-rows** - The number of rows in the game. Must be an odd number greater than or equal to 5.
-- **player1** - The type of player for player one. Must be one of: "human", "easyai", "mediumai", "hardai".
-- **player2** - The type of player for player two. Must be one of: "human", "easyai", "mediumai", "hardai".
+No external libraries were used in the development of this project.
 
-## Changes for Part II
-- Our playMove() and pass() methods now take in a Player, and inside the methods check whether or
-not the pieceColor is attempting to move or pass on a turn that is not theirs. If they are, then an
-IllegalStateException is thrown.
-- Added a method getStateAt(int x, int y) to the model, which returns the state of the cell at the
-given x and y coordinates. This is used by the view to determine if a move is valid or not.
-- getScore() now takes in a pieceColor. This is used by the view to determine the score of each pieceColor.
-- Added a method getTurn() to the model, which returns the current turn of the game.
-- Instead of storing a list of states, each cell is now mapped to its state using the 
-ReversiCellPair class.
+### Installation and Running
 
-### New Classes for Part II
-- **cs3500.reversi.model.ReversiCellPair** - This class is used to map each cell to its state.
-- **cs3500.reversi.model.ReversiPlayer** - This class is used to represent each pieceColor.
-- **cs3500.reversi.model.ReversiStrategy** - This interface is used to represent a strategy for
-playing the game. It has one method, which is used to determine the next move to make.
-- **cs3500.reversi.model.AvoidCellsNextToCorners** - This strategy is used to avoid playing cells
-next to corners, as they are easy to capture.
-- **cs3500.reversi.model.ChooseCornerCell** - This strategy is used to choose a corner cell to play
-on, as they are hard to capture and cannot be flipped.
-- **cs3500.reversi.model.FlipMostCells** - This strategy is used to flip the most cells possible.
-- **cs3500.reversi.model.StrategyWithFallbacks** - This strategy is used to combine multiple
-strategies together, and to use the first strategy that returns a valid move.
-- **cs3500.reversi.view.components.Hexagon** - This class is used to represent each hexagon on the board.
-- **cs3500.reversi.view.components.KeyComponent** - This class is used to handle which keys perform
-which actions inside the view.
-- **cs3500.reversi.view.components.ReversiPanel** - This class is used to represent the panel that
-the board is drawn on, handles clicking, etc.
-- **cs3500.reversi.view.GraphicsView** - This interface holds all the public methods in the view.
-- **cs3500.reversi.view.ViewFeatures** - Represents all the features that the view has.
-- **cs3500.reversi.view.ReversiGraphicsView** - Represents the frame the view is drawn on.
+1. Clone the repository to your machine, or download the `jar` file.
+2. Open the project in IntelliJ IDEA or your preferred IDE.
+3. Build the `jar` manually, or navigate to the `jar` file's directory and run the following command:
 
-We have also created a variety of mock models to test our strategies, making sure they check all
-the moves they are supposed to.
-
-## Overview
-Reversi is a two-pieceColor game where the objective is to have the most tiles at the end. Each pieceColor
-starts out having 3 colors in the center, alternating to make a ring of six colors around the 
-center. The game then begins with the first pieceColor placing a color on the board. The color must be
-placed in a way that it surrounds at least one of the other pieceColor's colors. If the color is placed
-in a way that it surrounds one of the other pieceColor's colors, then all of the colors that were
-surrounded by the color that was just placed, including neighboring colors, will be flipped to the 
-color of the pieceColor who just placed the color. The game ends when there are no more possible moves. 
-The pieceColor with the most tiles wins.
-
-The coordinate system used is cubic internally, keeping track of each hexagonal cells' q, r, and s
-state, however the perceived coordinate system that the players interact with uses a row and column 
-system, with an 'x' and 'y' value. We chose to do this for the pieceColor as we feel it is easier for 
-the pieceColor to understand the game in this way, rather than having to work with a three-dimensional
-coordinate system, having to calculate q, r, and s, relative to the center of the board.
-
-## Quick Start
-For starting a game with five rows, this is how you would do it:
-```java
-ReversiModel model = new HexagonalReversi(5);
-ReversiTextualView view = new TextualReversi(model);
-// For pieceColor one (O) to play the move at (1, 0), capturing the other pieceColor's 'X' at (1, 1):
-model.playMove(1, 0);
-view.render();
-// For pieceColor two (X) to to play the move at (0, 1), capturing the other pieceColor's 'O' at (1, 2):
-model.playMove(0, 1);
-view.render();
-
-// You can also pass your turn:
-model.pass();
-
-// You can also create a new model without specifying the number of rows, and it will default to 5:
-ReversiModel model2 = new HexagonalReversi();
+```shell
+java -jar HexagonalReversi.jar <board-size> <player1-type> <player2-type>
 ```
-You can also run the main file, as it has this example internally. 
 
-## Keyboard Components
-- **enter/return** - To make a move when a cell is selected.
-- **p** - Pass your turn.
-- **q** - Quit the game.
+- `<board-size>`: The size of the board, which must be at least 5 and odd. The board size is defined
+as the diameter of the game board, i.e. the number of hexagons along the longest horizontal axis.
+- `<player1-type>`: The type of player for player 1.
+- `<player2-type>`: The type of player for player 2.
 
-You can select a cell by simply clicking on it.
+Note: a player type is one of:
+- `human`: a human player who will physically click on the board to make a move.
+- `easyai`: an easy AI player.
+- `hardai`: a hard AI player.
+- `providerai`: an AI player based on our provider's strategy. See the [Design Patterns](#design-patterns) section for more information.
 
-## Key Components
-### Model
-- The model handles all of the game logic, such as playing moves, flipping pieces, and determining
-if the game is over or not. It also ties every cell with its cell state (empty, white, or black)
-using a mapping of every cell to such. The model uses a cubic coordinate system internally, keeping
-track of each cell's q, r, and s values, however it allows players to interact using a row and 
-column system, with an 'x' and 'y' values instead for ease-of-use. 
-### View 
-- The view is used to render the current state of the board for each pieceColor. It does this by 
-iterating through every cell on the board, and checking if it is empty, or if it has a piece on it. 
-If it is empty, it will print a dash. If it has a piece on it, it will print the piece. 
-It will also print the current score of the game, and whose turn it is.
-### Cells
-- The cells are used to represent each "hexagon" on the board. They keep track of their positional
-coordinate, so that the model can determine its neighboring cells, which is used for flipping 
-adjacent cells' colors.
+### Program Usage
 
-## Subcomponents
-- The model keeps track of various things, such as the current turn of the game, which is directly
-tied to whichever pieceColor's turn it is, as every odd-turn is white, and every even-turn is black. 
-It also keeps track of the number of rows, which is used to determine the size of the internal 
-arrays that store the cells. It also must keep track of if players pass, as if we encounter a 
-situation where both players "pass" in a row, the game ends. 
-- In order to keep track of the state of each cell, the model maps each cell to an Enum that 
-corresponds to either empty, black, or white. This is used by the view as well to render the board
-correctly with each pieceColor's pieces, and to determine if a requested move is valid or not.
+Keyboard Inputs
+- `enter/return`: make a move at the currently selected cell.
+- `p`: pass the turn to the next player.
+- `q`: quit the game.
 
-## Other Subcomponents
-- **ReversiCell** - This is the cell that is used to represent each cell on the board. It keeps
-track of its state, and its q, r, and s values. 
-- **ReversiCellState** - This enum is used to represent the state of each cell. It can be either
-empty, white, or black. The model ties the state of the cells with the cells themselves via a HashMap. 
+Mouse Inputs:
+- Click on a cell to highlight and select a cell. You can only select empty cells.
+- Once a cell is selected, you can press `enter/return` to make a move at that cell.
 
-## Source Organization
-- **cs3500.reversi.model.HexagonalReversi** - This is the model; the heart of the program, and what 
-handles all the logic for making moves. 
-- **cs3500.reversi.model.types.HexCell** - This is the class that represents each cell on the board.
-It keeps track of its q, r, and s values, which is used by the model for neighbor checking.
-- **cs3500.reversi.model.types.HexCellState** - This is the enum that represents the state of each
-cell. It can be either empty, white, or black.
-- **cs3500.reversi.model.types.Direction** - This is an enum that makes direction-checking easier by 
-representing each direction as its cardinal direction, such as "East", "South", rather than an int.
-- **cs3500.reversi.view.TextualReversi** - This is the view that renders the board for the players.
-It allows each pieceColor to know whose turn it is, and what the current score is, so that the players
-can act accordingly. 
-- **cs3500.reversi.Main** - This is the main class that is used to run the program. It is used to
-start the game, and to output and handle any exceptions that may occur.
+### Features & Design Patterns
 
-## Invariants
-- The number of cells with pieces placed on them is equal to the score of white plus the score of black.
-- The turn number is always greater than or equal to 1.
-- The number of rows is always greater than or equal to 5, and is always odd. 
-- The number of empty cells is equal to the number of total cells minus the number of black and white cells.
-- White always plays on on odd turns, and black always plays on even turns.
-- When the number of turns passed is equal to 2, the game is immediately over.
+#### Graphical User Interface
+
+- **Hexagonal Grid:** the game board is displayed using a hexagonal grid to process coordinates
+and calculate move validity in six directions.
+
+- **Cell Selection:** players can select cells by clicking on them, which highlights the cell
+and allows them to make a move.
+
+#### AI Players
+
+- **Easy AI:** a simple AI player that makes novice moves by making a move at the position that flips the most cells.
+- **Hard AI:** a more advanced AI player that a combination of many strategies and fallbacks, including prioritization
+of corner cells, avoiding cells next to corners, and flipping the most cells.
+- **Provider AI:** an AI player based on our provider's strategy, which flips the most cells.
+
+#### Textual View
+
+We support the option to view a textual representation of the current game state.
+This can be done in the `Main.java` file like so:
+
+```java
+public static void main(String[] args) {
+  // Create the Hexagonal Reversi model.
+  ReversiModel model = new HexagonalReversi();
+  // Initialize the textual view component.
+  ReversiTextualView view = new TextualReversi(model);
+  // Run various moves and print the view after each move.
+  System.out.println(view);
+  model.playMove(1, 0);
+  System.out.println(view);
+  model.playMove(0, 1);
+  System.out.println(view);
+}
+```
+
+#### Design Patterns
+
+- **Model-View-Controller (MVC):** the entire project is structured using the model-view-controller
+design pattern. The model represents the game state and logic, the view represents the graphical
+components, and the controller handles user input and updates the model and view accordingly.
+- **Strategy Pattern:** we used the strategy pattern to implement different AI player strategies.
+We created a `StrategyWithFallbacks` that encapsulates the different strategies and falls back to 
+another one if the current strategy fails to find a valid move (per the strategy's rules).
+- **Observer Pattern:** we used the observer pattern to notify the view of changes in the model.
+- **Adapter Pattern:** during the last part of this assignment, we were given code from another
+pair of students to integrate into our project. We used the adapter pattern to adapt their code
+appropriately, as they were using a different coordinate system and their model had a different
+structure from ours. We created the adaptor class based solely on the model interface we were provided with.
+- **Factory Pattern:** we used the factory pattern to create different types of AI players based on
+the command-line arguments provided by the user.
+
+### Screenshots
+
+#### Game Start (Human)
+![Game Start (Human)](./docs/screenshots/game_start_human.png)
+
+#### Cell Selected
+![Cell Selected](./docs/screenshots/cell_selected.png)
+
+#### Trivial In-Game (Human)
+![Trivial In-Game (Human)](./docs/screenshots/trivial_in_game_human.png)
+
+#### Invalid Move
+![Invalid Move](./docs/screenshots/invalid_move.png)
+
+#### Game Over
+![Game Over](./docs/screenshots/game_over.png)
+
+### Credits
+
+This project was developed by [Ben Petrillo](https://benpetrillo.dev) and Hunter Pong.

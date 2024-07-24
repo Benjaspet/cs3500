@@ -31,7 +31,6 @@ public class Hyperlink implements EBookFlow {
 
   public Hyperlink(EBookFlow contentToShow, String url) {
     this.contentToShow = Objects.requireNonNull(contentToShow);
-    String url1 = Objects.requireNonNull(url);
   }
 
   /**

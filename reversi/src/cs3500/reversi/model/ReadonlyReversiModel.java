@@ -110,7 +110,7 @@ public interface ReadonlyReversiModel {
    * The game board is stored as a 2D list of cells, with the origin <code>(0, 0)</code>
    * being the top leftmost cell. The first dimension represents the rows, and the second
    * dimension represents the columns. Our reasoning for using <code>(row, col)</code>
-   * coordinates is outlined in our README.md. This method is used in our strategies to
+   * coordinates is outlined in our DESIGN.md. This method is used in our strategies to
    * determine the best move to make, and it is used in our view to render the board.
    *
    * @return the cells in the game board, each mapped to its {@link HexCellState}.

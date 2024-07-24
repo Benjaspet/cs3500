@@ -34,7 +34,7 @@ public class Main {
 
   /**
    * The main method to create a game of Reversi, using command line arguments. These
-   * are outlined in our README.md.
+   * are outlined in our DESIGN.md.
    *
    * @param args the command line arguments.
    */
@@ -57,7 +57,7 @@ public class Main {
       throw new IllegalArgumentException("Must provide an odd integer >= 5.");
     }
     GraphicsView viewPlayer1 = new ViewFactory(model, player1, false).build();
-    GraphicsView viewPlayer2 = new ViewFactory(model, player2, true).build();
+    GraphicsView viewPlayer2 = new ViewFactory(model, player2, false).build();
     ReversiController controller1 = new ReversiController(model, player1, viewPlayer1);
     ReversiController controller2 = new ReversiController(model, player2, viewPlayer2);
     model.startGame();
