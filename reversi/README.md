@@ -1,9 +1,5 @@
 # Hexagonal Reversi
 
-Per course guidelines for CS-3500: Object-Oriented Design at Northeastern University,
-source code for this project must remain private. The source code will be made publicly
-available upon request to [petrillo.b@northeastern.edu](mailto:petrillo.b@northeastern.edu).
-
 ## Project Outline
 1. Description
 2. Technology Stack
